@@ -1,12 +1,22 @@
 package repository
 
+import entity.ContactEntity
+
 class ContactRepository {
 
-    fun save(name: String, phone: String){
+    companion object{
+        private val contactList = mutableListOf<ContactEntity>()
 
-    }
+        fun save(contact: ContactEntity){
+            contactList.add(contact)
+        }
 
-    fun delete(name: String, phone: String){
+        fun delete(contact: ContactEntity){
 
+        }
+
+        fun getList(): List<ContactEntity>{
+            return contactList
+        }
     }
 }
