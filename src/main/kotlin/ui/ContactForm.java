@@ -1,5 +1,7 @@
 package ui;
 
+import business.ContactBusiness;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,6 +13,8 @@ public class ContactForm extends JFrame {
     private JPanel contactPanel;
     private JButton cancelButton;
     private JButton saveButton;
+
+    private ContactBusiness mContacBusiness;
 
     public ContactForm(){
 
@@ -24,6 +28,8 @@ public class ContactForm extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         setListeners();
+
+        mContacBusiness = new ContactBusiness();
     }
 
     private void setListeners(){
@@ -38,7 +44,16 @@ public class ContactForm extends JFrame {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    var name = nameTxtField.getText();
+                    var phone = numberTxtField.getText();
+                    mContacBusiness.save(name, phone);
 
+                    new MainForm();
+                    dispose();
+                }catch (Exception excp){
+                    JOptionPane.showMessageDialog(new JFrame(), excp.getMessage());
+                }
             }
         });
     }
