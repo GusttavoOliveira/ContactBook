@@ -39,7 +39,7 @@ class ContactBusiness {
 
     private fun validateDelete(name: String, phone: String){
         if(name == "" || phone == ""){
-            throw Exception("É preciso selecionar um contato válido")
+            throw Exception("É preciso selecionar um contato antes de remover")
         }
     }
 
